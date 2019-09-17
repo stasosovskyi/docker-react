@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run  -e CI=true kashnyapa/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-lessons"
+  env: "DockerLessons-env"
+  bucket_name: "elasticbeanstalk-us-east-2-336811532115"
+  bucket_path: "docker-lessons"
+  on:
+    branch: master
+  acccess_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
